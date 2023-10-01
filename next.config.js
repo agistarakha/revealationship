@@ -1,4 +1,24 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  experimental: {
+    serverActions: true,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "3000",
+        pathname: "/api/img/**",
+      },
+      {
+        protocol: "https",
+        hostname: "revealationship.s3.ap-southeast-2.amazonaws.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

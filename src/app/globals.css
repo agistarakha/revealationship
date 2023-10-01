@@ -2,26 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer utilities {
+    .btn {
+        @apply border bg-stone-900 hover:bg-stone-800 border-black p-2
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+::-moz-selection {
+    /* Code for Firefox */
+    color: black;
+    background: white;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+::selection {
+    color: black;
+    background: white;
 }
+
+/* .custom-img-wrap-outside {
+    transition: height 0.75s;
+}
+
+.custom-img-wrap-inside {
+    transition: top 0.75s, height 0.75s;
+} */
+/* .custom-img-wrap-parent:hover .custom-img-wrap-outside{
+    height: 100%!important;
+
+}
+.custom-img-wrap-parent:hover .custom-img-wrap-inside{
+    top: 0 !important;
+    height: 0 !important;
+
+} */
