@@ -42,8 +42,9 @@ export default async function UploadForm({
   return (
     <form
       action={imageFormAction}
-      className="bg-stone-800 border border-stone-700 shadow rounded flex flex-col gap-2 p-4 w-10/12 md:w-6/12 mx-auto"
+      className="bg-stone-800 border border-stone-700 shadow rounded flex flex-col gap-2 p-4 w-10/12 md:w-8/12  mx-auto"
     >
+      {method !== "PUT" && <ImageInput />}
       <div className="flex flex-col">
         <label htmlFor="title">Title</label>
         <input
@@ -123,7 +124,6 @@ export default async function UploadForm({
           </select>
         </div>
       )}
-      {method !== "PUT" && <ImageInput />}
       {sub && (
         <input type="text" value={sub} name="owner" readOnly required hidden />
       )}

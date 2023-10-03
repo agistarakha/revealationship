@@ -92,7 +92,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <Navbar user={user} />
       <div className="flex flex-col gap-4">
         <div className="text-center">
-          <h1 className={`${oxygen.className} text-4xl md:text-6xl `}>
+          <h1 className={`${oxygen.className} text-2xl md:text-6xl `}>
             {imgData.title}
           </h1>
           <p className="text-lg md:text-2xl">{imgData.description}</p>
@@ -106,7 +106,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                   style={{ width: `${percentageProgressLeft}%` }}
                 ></div>
               </div>
-              <div className={`${oxygen.className} text-4xl md:text-6xl`}>
+              <div className={`${oxygen.className} text-2xl md:text-6xl`}>
                 {percentageProgressLeft}%
               </div>
               <div className={`text-lg md:text-2xl`}>
@@ -120,7 +120,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                   return (
                     <div>
                       <div
-                        className={`${oxygen.className} text-4xl m:text-6xl`}
+                        className={`${oxygen.className} text-2xl m:text-6xl`}
                       >
                         {timeLeft[key]}
                       </div>
@@ -161,7 +161,7 @@ export default async function Page({ params }: { params: { id: string } }) {
               alt="Covered Image"
               width={300}
               height={400}
-              className="mx-auto shadow-sm shadow-black md:w-96 w-64"
+              className="mx-auto shadow-sm shadow-black lg:w-96 w-64"
               priority={true}
               placeholder="blur"
               blurDataURL="/loading2.svg"

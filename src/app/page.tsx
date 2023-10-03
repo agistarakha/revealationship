@@ -29,39 +29,50 @@ export default async function Home() {
   return (
     <>
       <Navbar user={user} />
-      <div className="flex flex-col gap-8">
-        <div className="flex justify-around">
-          <div className="flex flex-col justify-center gap-2">
-            <h1 className={`${oxygen.className} text-6xl`}>
+      <div className="flex flex-col gap-24">
+        <div className="flex flex-col items-center gap-4 lg:flex-row  lg:justify-around">
+          <div className="w-72 sm:w-96 xl:w-128 flex flex-col justify-center gap-2">
+            <h1 className={`${oxygen.className} text-4xl sm:text-6xl`}>
               Reveal Your Image
             </h1>
-            <p className="text-2xl">Give User Engagement Rewards</p>
+            <p className="text-xl sm:text-2xl">Give User Engagement Rewards</p>
             <div className="">
-              <button className={`${oxygen.className} text-2xl btn rounded`}>
+              <button
+                className={`${oxygen.className} text-xl sm:text-2xl btn rounded`}
+              >
                 Get Started
               </button>
             </div>
           </div>
           <div>
-            <img src="https://placehold.co/600x400" alt="" />
+            <img
+              src="https://placehold.co/600x400"
+              alt=""
+              className="w-72 sm:w-96 xl:w-128"
+            />
           </div>
         </div>
         <div className="flex flex-col gap-4">
           <div>
-            <h2 className={`${oxygen.className} text-4xl text-center`}>
+            <h2
+              className={`${oxygen.className} text-2xl sm:text-4xl text-center`}
+            >
               Upload Image
             </h2>
-            <p className="text-xl text-center">Need Help? Learn more here</p>
+            <p className="text-lg sm:text-xl text-center">
+              Need Help? Learn more here
+            </p>
           </div>
           <UploadForm sub={user?.sub} />
         </div>
         <div className="flex flex-col gap-6">
           <div>
-            <h1 className={`${oxygen.className} text-4xl text-center`}>
+            <h1
+              className={`${oxygen.className} text-2xl sm:text-4xl text-center`}
+            >
               How To
             </h1>
-
-            <p className="text-xl text-center">
+            <p className="text-lg sm:text-xl text-center">
               This is step by step on how to upload your image reval
             </p>
           </div>
@@ -75,22 +86,24 @@ export default async function Home() {
 
 function SectionComponent({ isReverse }: { isReverse?: boolean }) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className={`flex flex-col items-center lg:flex-row lg:justify-around`}>
+      <div>
+        <img
+          src="https://placehold.co/600x400"
+          alt=""
+          className="w-72 sm:w-96 xl:w-128"
+        />
+      </div>
       <div
-        className={`flex gap-4 justify-center ${
-          isReverse && "flex-row-reverse"
+        className={`w-72 sm:w-96 xl:w-128 flex flex-col justify-center gap-4 bg-red-800 ${
+          isReverse ? "lg:order-first" : "order-none"
         }`}
       >
-        <div className="flex flex-col justify-center gap-4 ">
-          <h3 className={`${oxygen.className} text-2xl`}>
-            1. Upload Your Image woyyyyyyyyyyyyyyyyyyy
-          </h3>
-          <p className="text-lg">Give User Engagement Rewards</p>
-          <div className=""></div>
-        </div>
-        <div>
-          <img src="https://placehold.co/600x400" alt="" />
-        </div>
+        <h3 className={`${oxygen.className} text-xl sm:text-2xl`}>
+          1. Upload Your Image
+        </h3>
+        <p className="text-md sm:text-lg">Give User Engagement Rewards</p>
+        <div className=""></div>
       </div>
     </div>
   );

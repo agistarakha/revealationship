@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
+import {
+  ArrowLongLeftIcon,
+  ArrowLongDownIcon,
+  ArrowLongRightIcon,
+  ArrowLongUpIcon,
+} from "@heroicons/react/24/solid";
 type ImageWrapperProps = {
   percentageProgress: string;
   percentageProgressLeft: string;
@@ -87,7 +92,7 @@ export default function ImageWrapper({
   return (
     <>
       <div
-        className="absolute right-0 left-0 top-0 h-full"
+        className="absolute right-0 left-0 top-0 h-full cursor-pointer"
         onClick={() => {
           setReveal((currentVal) => {
             return !currentVal;
@@ -95,6 +100,7 @@ export default function ImageWrapper({
         }}
       ></div>
       <div
+        className="cursor-pointer"
         onClick={() => {
           setReveal((currentVal) => {
             return !currentVal;
@@ -105,7 +111,13 @@ export default function ImageWrapper({
           style={absolutePos.style1}
           className={`${absolutePos.className1} bg-stone-900 absolute shadow-md shadow-black rounded transition-all duration-700`}
         >
-          <p className="text-center">Click to reveal</p>
+          <div
+            className={`text-center transition-opacity ${
+              reveal && "opacity-0"
+            }`}
+          >
+            Tap to reveal
+          </div>
         </div>
         <div
           className={`${absolutePos.className2} bg-stone-800 absolute shadow-md shadow-black rounded transition-all duration-700`}

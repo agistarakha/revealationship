@@ -10,7 +10,6 @@ export default function ({ user }: UserClaimsProps) {
     <div>
       {user ? (
         <button className="flex items-center relative group">
-          <p className="text-4xl">|</p>
           <img
             src={user.picture}
             alt={user.name}
@@ -30,7 +29,7 @@ export default function ({ user }: UserClaimsProps) {
           border-stone-600
           rounded
           shadow
-          z-10
+          z-20
           "
           >
             <a href="/api/auth/logout" className="btn">
