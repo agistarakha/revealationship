@@ -14,6 +14,7 @@ export default function Page() {
           name="revealDirection"
           id="revealDirection"
           className="bg-stone-700"
+          required
         >
           <option value="bottom">bottom</option>
           <option value="top">top</option>
@@ -29,6 +30,7 @@ export default function Page() {
           name="file"
           onChange={(e) => setFile(e.target.files?.[0])}
           accept="image/*"
+          required
         />
         <br />
         {file ? (

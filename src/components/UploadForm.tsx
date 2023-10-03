@@ -34,10 +34,10 @@ export default async function UploadForm({
 }: UploadFormProps) {
   const youtubeBaseUrl = `https://youtu.be/`;
   let expiredDateString = "";
+  const currentDateString = convertToDateTimeLocalString(new Date());
   if (expiredDate) {
     expiredDateString = convertToDateTimeLocalString(expiredDate);
   }
-  console.log(expiredDateString);
 
   return (
     <form
@@ -52,17 +52,23 @@ export default async function UploadForm({
           name="title"
           id="title"
           defaultValue={title}
+          required
+          maxLength={60}
+          minLength={1}
         />
       </div>
       <div className="flex flex-col">
         <label htmlFor="description">Description</label>
-        <input
+        <textarea
           className="bg-stone-700"
-          type="text"
           name="description"
           id="description"
           defaultValue={description}
-        />
+          minLength={1}
+          maxLength={1000}
+          required
+          rows={8}
+        ></textarea>
       </div>
       <div className="flex flex-col">
         <label htmlFor="target">Target Likes</label>
@@ -73,6 +79,7 @@ export default async function UploadForm({
           id="target"
           min={0}
           defaultValue={target}
+          required
         />
       </div>
       <div className="flex flex-col">
@@ -83,6 +90,8 @@ export default async function UploadForm({
           name="expiredDate"
           id="expiredDate"
           defaultValue={expiredDateString}
+          min={currentDateString}
+          required
         />
       </div>
 
@@ -94,6 +103,8 @@ export default async function UploadForm({
           name="targetUrl"
           id="targetUrl"
           defaultValue={targetUrl && `${youtubeBaseUrl}${targetUrl}`}
+          min={1}
+          required
         />
       </div>
       {method == "PUT" && (
@@ -104,6 +115,7 @@ export default async function UploadForm({
             id="revealDirection"
             className="bg-stone-700"
             defaultValue={revealDirection}
+            required
           >
             {["bottom", "top", "left", "right"].map((e) => {
               return <option value={e}>{e}</option>;
@@ -112,10 +124,21 @@ export default async function UploadForm({
         </div>
       )}
       {method !== "PUT" && <ImageInput />}
-      {sub && <input type="text" value={sub} name="owner" readOnly />}
+      {sub && (
+        <input type="text" value={sub} name="owner" readOnly required hidden />
+      )}
 
-      {id && <input type="text" name="id" value={id} readOnly />}
-      <input type="text" name="method" hidden readOnly value={method} />
+      {id && (
+        <input type="text" name="id" value={id} readOnly required hidden />
+      )}
+      <input
+        type="text"
+        name="method"
+        hidden
+        readOnly
+        value={method}
+        required
+      />
       {/* <div>
         <input
           type="submit"

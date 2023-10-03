@@ -95,7 +95,6 @@ export default function ImageWrapper({
         }}
       ></div>
       <div
-        className="bg-blue-600"
         onClick={() => {
           setReveal((currentVal) => {
             return !currentVal;

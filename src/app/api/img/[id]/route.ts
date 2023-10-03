@@ -6,25 +6,38 @@ import { cookies } from "next/headers";
 
 function getOffsetOptions(
   direction: string,
-  revealedAreaSize: number
+  originalImgWidth: number,
+  originalImgHeight: number,
+  progress: number
 ): { top: number; left: number } {
+  let revealedAreaSize: number;
+
   switch (direction) {
     case "top":
+      revealedAreaSize =
+        originalImgHeight - Math.floor(originalImgHeight * (1 - progress));
+
       return {
         top: -revealedAreaSize,
         left: 0,
       };
     case "right":
+      revealedAreaSize =
+        originalImgWidth - Math.floor(originalImgWidth * (1 - progress));
       return {
         top: 0,
         left: revealedAreaSize,
       };
     case "left":
+      revealedAreaSize =
+        originalImgWidth - Math.floor(originalImgWidth * (1 - progress));
       return {
         top: 0,
         left: -revealedAreaSize,
       };
     default:
+      revealedAreaSize =
+        originalImgHeight - Math.floor(originalImgHeight * (1 - progress));
       return {
         top: revealedAreaSize,
         left: 0,
@@ -65,9 +78,12 @@ async function getCoveredImage(
     },
   }).toBuffer();
 
-  const revealedAreaSize: number =
-    originalImgHeight - Math.floor(originalImgHeight * (1 - progress));
-  const { top, left } = getOffsetOptions(revealDirection, revealedAreaSize);
+  const { top, left } = getOffsetOptions(
+    revealDirection,
+    originalImgWidth,
+    originalImgHeight,
+    progress
+  );
   //   Composite the original image with the overlay
   const newImg = await originalImg
     .composite([
