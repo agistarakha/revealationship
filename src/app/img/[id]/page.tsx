@@ -157,7 +157,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           </div>
           <div className="relative w-max ">
             <Image
-              src={`${imgUrl}?r=${percentageProgress}`}
+              src={`${imgUrl}?r=${percentageProgress}&dir${imgData.revealDirection}`}
               alt="Covered Image"
               width={300}
               height={400}
@@ -170,6 +170,7 @@ export default async function Page({ params }: { params: { id: string } }) {
               percentageProgress={percentageProgress}
               percentageProgressLeft={percentageProgressLeft}
               imgUrl={imgUrl}
+              revealDirection={imgData.revealDirection}
             />
           </div>
         </div>

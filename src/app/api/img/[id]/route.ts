@@ -11,18 +11,18 @@ function getOffsetOptions(
   switch (direction) {
     case "top":
       return {
-        top: revealedAreaSize,
+        top: -revealedAreaSize,
         left: 0,
       };
     case "right":
       return {
         top: 0,
-        left: -revealedAreaSize,
+        left: revealedAreaSize,
       };
     case "left":
       return {
         top: 0,
-        left: revealedAreaSize,
+        left: -revealedAreaSize,
       };
     default:
       return {
