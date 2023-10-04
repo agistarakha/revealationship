@@ -3,7 +3,11 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import ImageWrapper from "@/components/ImageWrapper";
 
-export default function Page() {
+export default function Page({
+  oxygenClassname,
+}: {
+  oxygenClassname?: string;
+}) {
   const [file, setFile] = useState<File | undefined>();
   const [percentage, setPercentage] = useState(50);
   const [revealDirection, setRevealDirection] = useState("bottom");
@@ -12,10 +16,13 @@ export default function Page() {
 
   return (
     <>
-      <div>
-        <label className="block text-sm font-medium">Upload Image</label>
+      <div className="flex flex-col">
+        <label className={`${oxygenClassname} block text-lg`}>
+          Upload Image
+        </label>
+
         <input
-          className="block w-full text-xs bg-stone-700 placeholder:bg-stone-900"
+          className="bg-stone-700 rounded-lg  border border-stone-600"
           type="file"
           name="file"
           onChange={(e) => setFile(e.target.files?.[0])}
@@ -51,7 +58,7 @@ export default function Page() {
                 <select
                   name="revealDirection"
                   id="revealDirection"
-                  className="bg-stone-700"
+                  className="bg-stone-700 rounded-lg p-2 border border-stone-600"
                   required
                   value={revealDirection}
                   onChange={(e) => {

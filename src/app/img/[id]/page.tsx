@@ -1,5 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  AiOutlineYoutube,
+  AiOutlineCopy,
+  AiOutlineDownload,
+} from "react-icons/ai";
+
 import { Claims, getSession } from "@auth0/nextjs-auth0";
 import prisma from "@/db";
 import getImgUrl from "@/utils/getImgUrl";
@@ -8,6 +14,7 @@ import ImageWrapper from "@/components/ImageWrapper";
 import Navbar from "@/components/Navbar";
 import { deleteImage } from "@/actions/deleteImageAction";
 import { Oxygen } from "next/font/google";
+import CopyUrlBtn from "@/components/CopyUrlBtn";
 const oxygen = Oxygen({
   weight: "400",
   subsets: ["latin"],
@@ -68,7 +75,9 @@ async function getProgress(likesTarget: number, likesCount: number) {
 export default async function Page({ params }: { params: { id: string } }) {
   const session = await getSession();
   const user = session?.user;
+  const currentUrl = `${process.env.BASE_URL}/img${params.id}`;
   const imgUrl = `http://localhost:3000/api/img/${params.id}`;
+  const youtubeBaseUrl = `https://youtu.be/`;
   const imgData = await prisma.image.findFirst({ where: { id: params.id } });
   if (!imgData) {
     return <div>404</div>;
@@ -91,7 +100,7 @@ export default async function Page({ params }: { params: { id: string } }) {
     <>
       <Navbar user={user} />
       <div className="flex flex-col gap-4">
-        <div className="text-center">
+        <div className="text-center flex flex-col gap-1">
           <h1 className={`${oxygen.className} text-2xl md:text-6xl `}>
             {imgData.title}
           </h1>
@@ -106,53 +115,69 @@ export default async function Page({ params }: { params: { id: string } }) {
                   style={{ width: `${percentageProgressLeft}%` }}
                 ></div>
               </div>
-              <div className={`${oxygen.className} text-2xl md:text-6xl`}>
+              <div className={`${oxygen.className} text-2xl md:text-4xl`}>
                 {percentageProgressLeft}%
               </div>
-              <div className={`text-lg md:text-2xl`}>
+              <div className={`text-lg md:text-xl`}>
                 {currentLikesCount}/{imgData.target} Likes
               </div>
             </div>
             <div>
               <div className={`text-lg md:text-2xl text-center`}>Time Left</div>
-              <div className="text-center flex justify-between gap-4 md:gap-0">
+              <div className="text-center flex justify-between gap-4 ">
                 {Object.keys(timeLeft).map((key) => {
                   return (
                     <div>
                       <div
-                        className={`${oxygen.className} text-2xl m:text-6xl`}
+                        className={`${oxygen.className} text-2xl m:text-4xl`}
                       >
                         {timeLeft[key]}
                       </div>
-                      <div className={`text-lg md:text-2xl`}>{key}</div>
+                      <div className={`text-lg md:text-xl`}>{key}</div>
                     </div>
                   );
                 })}
               </div>
             </div>
-            <div>
-              {progress >= 1 ? (
+            <div className="flex flex-col gap-1">
+              <div>
                 <a
-                  href={oriImgUrl ? oriImgUrl : "#"}
+                  href={`${youtubeBaseUrl}${imgData.targetUrl}`}
                   target="_blank"
-                  className="btn block text-center"
+                  className="btn flex items-center justify-center gap-1 text-lg md:text-xl"
                 >
-                  Download
+                  <AiOutlineYoutube />
+                  <div>Watch Video</div>
+                  {/* <img src="/yt.svg" alt="" /> */}
                 </a>
-              ) : (
-                <>
+              </div>
+              <CopyUrlBtn />
+              <div>
+                {progress >= 1 ? (
                   <a
-                    href={imgUrl}
+                    href={oriImgUrl ? oriImgUrl : "#"}
                     target="_blank"
-                    className="btn block text-center"
+                    className="btn flex items-center justify-center gap-1 text-lg md:text-xl "
                   >
-                    Download
+                    <AiOutlineDownload />
+                    <div>Download</div>
                   </a>
-                  <div className="text-lg md:text-2xl">
+                ) : (
+                  <>
+                    <a
+                      href={imgUrl}
+                      target="_blank"
+                      className="btn flex items-center justify-center gap-1 text-lg md:text-xl "
+                    >
+                      <AiOutlineDownload />
+                      <div>Download</div>
+                    </a>
+                    {/* <div className="text-lg md:text-2xl">
                     Only {(progress * 100).toFixed(2)}% is revealed!
-                  </div>
-                </>
-              )}
+                  </div> */}
+                  </>
+                )}
+              </div>
             </div>
           </div>
           <div className="relative w-max ">

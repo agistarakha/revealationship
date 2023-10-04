@@ -1,6 +1,12 @@
 import ImageInput from "@/components/ImageInput";
 import { imageFormAction } from "@/actions/imageFormAction";
 import FormButton from "./FormButton";
+
+import { Oxygen } from "next/font/google";
+const oxygen = Oxygen({
+  weight: "400",
+  subsets: ["latin"],
+});
 type UploadFormProps = {
   sub?: string | undefined | null;
   target?: number | undefined;
@@ -44,37 +50,44 @@ export default async function UploadForm({
       action={imageFormAction}
       className="bg-stone-800 border border-stone-700 shadow rounded flex flex-col gap-2 p-4 w-10/12 md:w-8/12  mx-auto"
     >
-      {method !== "PUT" && <ImageInput />}
+      {method !== "PUT" && <ImageInput oxygenClassname={oxygen.className} />}
+
       <div className="flex flex-col">
-        <label htmlFor="title">Title</label>
+        <label htmlFor="title" className={`${oxygen.className} text-lg`}>
+          Title
+        </label>
         <input
-          className="bg-stone-700"
+          className="bg-stone-700 rounded-lg p-2 border border-stone-600"
           type="text"
           name="title"
           id="title"
           defaultValue={title}
           required
-          maxLength={60}
+          maxLength={50}
           minLength={1}
         />
       </div>
       <div className="flex flex-col">
-        <label htmlFor="description">Description</label>
+        <label className={`${oxygen.className} text-lg`} htmlFor="description">
+          Short Description
+        </label>
         <textarea
-          className="bg-stone-700"
+          className="bg-stone-700 rounded-lg p-2 border border-stone-600"
           name="description"
           id="description"
           defaultValue={description}
           minLength={1}
-          maxLength={1000}
+          maxLength={100}
           required
-          rows={8}
+          rows={2}
         ></textarea>
       </div>
       <div className="flex flex-col">
-        <label htmlFor="target">Target Likes</label>
+        <label className={`${oxygen.className} text-lg`} htmlFor="target">
+          Target Likes
+        </label>
         <input
-          className="bg-stone-700"
+          className="bg-stone-700 rounded-lg p-2 border border-stone-600"
           type="number"
           name="target"
           id="target"
@@ -84,9 +97,11 @@ export default async function UploadForm({
         />
       </div>
       <div className="flex flex-col">
-        <label htmlFor="expiredDate">Expired Date</label>
+        <label className={`${oxygen.className} text-lg`} htmlFor="expiredDate">
+          Expired Date
+        </label>
         <input
-          className="bg-stone-700"
+          className="bg-stone-700 rounded-lg p-2 border border-stone-600"
           type="datetime-local"
           name="expiredDate"
           id="expiredDate"
@@ -97,9 +112,11 @@ export default async function UploadForm({
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="targetUrl">Target Post</label>
+        <label className={`${oxygen.className} text-lg`} htmlFor="targetUrl">
+          Target Post
+        </label>
         <input
-          className="bg-stone-700"
+          className="bg-stone-700 rounded-lg p-2 border border-stone-600"
           type="text"
           name="targetUrl"
           id="targetUrl"
@@ -110,11 +127,16 @@ export default async function UploadForm({
       </div>
       {method == "PUT" && (
         <div className="flex flex-col">
-          <label htmlFor="revealDirection">Reveal Direction</label>
+          <label
+            className={`${oxygen.className} text-lg`}
+            htmlFor="revealDirection"
+          >
+            Reveal Direction
+          </label>
           <select
             name="revealDirection"
             id="revealDirection"
-            className="bg-stone-700"
+            className="bg-stone-700 rounded-lg p-2 border border-stone-600"
             defaultValue={revealDirection}
             required
           >
