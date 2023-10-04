@@ -100,104 +100,28 @@ export default async function Page({ params }: { params: { id: string } }) {
     <>
       <Navbar user={user} />
       <div className="flex flex-col gap-4">
-        <div className="text-center flex flex-col gap-1">
-          <h1 className={`${oxygen.className} text-2xl md:text-6xl `}>
-            {imgData.title}
-          </h1>
-          <p className="text-lg md:text-2xl">{imgData.description}</p>
-        </div>
+        <HeaderSectionComponent
+          title={imgData.title}
+          description={imgData.description}
+        />
         <div className="flex flex-col items-center text-center md:flex-row md:justify-center gap-4">
-          <div className="flex flex-col gap-4">
-            <div>
-              <div className="bg-red-900 rounded-full">
-                <div
-                  className="bg-stone-900 h-2 rounded-full"
-                  style={{ width: `${percentageProgressLeft}%` }}
-                ></div>
-              </div>
-              <div className={`${oxygen.className} text-2xl md:text-4xl`}>
-                {percentageProgressLeft}%
-              </div>
-              <div className={`text-lg md:text-xl`}>
-                {currentLikesCount}/{imgData.target} Likes
-              </div>
-            </div>
-            <div>
-              <div className={`text-lg md:text-2xl text-center`}>Time Left</div>
-              <div className="text-center flex justify-between gap-4 ">
-                {Object.keys(timeLeft).map((key) => {
-                  return (
-                    <div>
-                      <div
-                        className={`${oxygen.className} text-2xl m:text-4xl`}
-                      >
-                        {timeLeft[key]}
-                      </div>
-                      <div className={`text-lg md:text-xl`}>{key}</div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="flex flex-col gap-1">
-              <div>
-                <a
-                  href={`${youtubeBaseUrl}${imgData.targetUrl}`}
-                  target="_blank"
-                  className="btn flex items-center justify-center gap-1 text-lg md:text-xl"
-                >
-                  <AiOutlineYoutube />
-                  <div>Watch Video</div>
-                  {/* <img src="/yt.svg" alt="" /> */}
-                </a>
-              </div>
-              <CopyUrlBtn />
-              <div>
-                {progress >= 1 ? (
-                  <a
-                    href={oriImgUrl ? oriImgUrl : "#"}
-                    target="_blank"
-                    className="btn flex items-center justify-center gap-1 text-lg md:text-xl "
-                  >
-                    <AiOutlineDownload />
-                    <div>Download</div>
-                  </a>
-                ) : (
-                  <>
-                    <a
-                      href={imgUrl}
-                      target="_blank"
-                      className="btn flex items-center justify-center gap-1 text-lg md:text-xl "
-                    >
-                      <AiOutlineDownload />
-                      <div>Download</div>
-                    </a>
-                    {/* <div className="text-lg md:text-2xl">
-                    Only {(progress * 100).toFixed(2)}% is revealed!
-                  </div> */}
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-          <div className="relative w-max ">
-            <Image
-              src={`${imgUrl}?r=${percentageProgress}&dir${imgData.revealDirection}`}
-              alt="Covered Image"
-              width={300}
-              height={400}
-              className="mx-auto shadow-sm shadow-black lg:w-96 w-64"
-              priority={true}
-              placeholder="blur"
-              blurDataURL="/loading2.svg"
-            />
-            <ImageWrapper
-              percentageProgress={percentageProgress}
-              percentageProgressLeft={percentageProgressLeft}
-              imgUrl={imgUrl}
-              revealDirection={imgData.revealDirection}
-            />
-          </div>
+          <ImageStatsSectionComponent
+            percentageProgressLeft={percentageProgressLeft}
+            progress={progress}
+            targetLikes={imgData.target}
+            targetUrl={imgData.targetUrl}
+            currentLikesCount={currentLikesCount}
+            imgUrl={imgUrl}
+            oriImgUrl={oriImgUrl}
+            timeLeft={timeLeft}
+            youtubeBaseUrl={youtubeBaseUrl}
+          />
+          <ImageRevealSectionComponent
+            percentageProgress={percentageProgress}
+            percentageProgressLeft={percentageProgressLeft}
+            revealDirection={imgData.revealDirection}
+            imgUrl={imgUrl}
+          />
         </div>
 
         {isOwner && (
@@ -215,5 +139,147 @@ export default async function Page({ params }: { params: { id: string } }) {
         </form>
       </div>
     </>
+  );
+}
+
+function HeaderSectionComponent({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="text-center flex flex-col gap-1">
+      <h1 className={`${oxygen.className} text-2xl md:text-6xl `}>{title}</h1>
+      <p className="text-lg md:text-2xl">{description}</p>
+    </div>
+  );
+}
+function ImageStatsSectionComponent({
+  percentageProgressLeft,
+  currentLikesCount,
+  targetLikes,
+  timeLeft,
+  imgUrl,
+  oriImgUrl,
+  progress,
+  youtubeBaseUrl,
+  targetUrl,
+}: {
+  percentageProgressLeft: string;
+  currentLikesCount: number;
+  targetLikes: number;
+  timeLeft: { [key: string]: number };
+  imgUrl: string;
+  oriImgUrl?: string | null;
+  progress: number;
+  youtubeBaseUrl: string;
+  targetUrl: string;
+}) {
+  return (
+    <div className="flex flex-col gap-4">
+      <div>
+        <div className="bg-red-900 rounded-full">
+          <div
+            className="bg-stone-900 h-2 rounded-full"
+            style={{ width: `${percentageProgressLeft}%` }}
+          ></div>
+        </div>
+        <div className={`${oxygen.className} text-2xl md:text-4xl`}>
+          {percentageProgressLeft}%
+        </div>
+        <div className={`text-lg md:text-xl`}>
+          {currentLikesCount}/{targetLikes} Likes
+        </div>
+      </div>
+      <div>
+        <div className={`text-lg md:text-2xl text-center`}>Time Left</div>
+        <div className="text-center flex justify-between gap-4 ">
+          {Object.keys(timeLeft).map((key) => {
+            return (
+              <div>
+                <div className={`${oxygen.className} text-2xl m:text-4xl`}>
+                  {timeLeft[key]}
+                </div>
+                <div className={`text-lg md:text-xl`}>{key}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="flex flex-col gap-1">
+        <div>
+          <a
+            href={`${youtubeBaseUrl}${targetUrl}`}
+            target="_blank"
+            className="btn flex items-center justify-center gap-1 text-lg md:text-xl"
+          >
+            <AiOutlineYoutube />
+            <div>Watch Video</div>
+            {/* <img src="/yt.svg" alt="" /> */}
+          </a>
+        </div>
+        <CopyUrlBtn />
+        <div>
+          {progress >= 1 ? (
+            <a
+              href={oriImgUrl ? oriImgUrl : "#"}
+              target="_blank"
+              className="btn flex items-center justify-center gap-1 text-lg md:text-xl "
+            >
+              <AiOutlineDownload />
+              <div>Download</div>
+            </a>
+          ) : (
+            <>
+              <a
+                href={imgUrl}
+                target="_blank"
+                className="btn flex items-center justify-center gap-1 text-lg md:text-xl "
+              >
+                <AiOutlineDownload />
+                <div>Download</div>
+              </a>
+              {/* <div className="text-lg md:text-2xl">
+                    Only {(progress * 100).toFixed(2)}% is revealed!
+                  </div> */}
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+function ImageRevealSectionComponent({
+  imgUrl,
+  percentageProgress,
+  revealDirection,
+  percentageProgressLeft,
+}: {
+  imgUrl: string;
+  percentageProgress: string;
+  revealDirection: string;
+  percentageProgressLeft: string;
+}) {
+  return (
+    <div className="relative w-max ">
+      <Image
+        src={`${imgUrl}?r=${percentageProgress}&dir${revealDirection}`}
+        alt="Covered Image"
+        width={300}
+        height={400}
+        className="mx-auto shadow-sm shadow-black lg:w-96 w-64"
+        priority={true}
+        placeholder="blur"
+        blurDataURL="/loading2.svg"
+      />
+      <ImageWrapper
+        percentageProgress={percentageProgress}
+        percentageProgressLeft={percentageProgressLeft}
+        imgUrl={imgUrl}
+        revealDirection={revealDirection}
+      />
+    </div>
   );
 }
