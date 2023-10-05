@@ -94,7 +94,12 @@ export default async function Page({ params }: { params: { id: string } }) {
   }
   const dateNow = new Date();
   const timeLeft = calculateTimeLeft(new Date(), imgData.expiredDate);
-  // console.log(`${daysLeft} days, ${hoursLeft} hours, ${minutesLeft} minutes`);
+  if (
+    timeLeft["days"] + timeLeft["hours"] + timeLeft["minutes"] <= 0 &&
+    !isOwner
+  ) {
+    return <div>404</div>;
+  }
 
   return (
     <>
