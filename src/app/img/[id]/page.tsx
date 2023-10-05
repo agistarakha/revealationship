@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   AiOutlineYoutube,
-  AiOutlineCopy,
   AiOutlineDownload,
+  AiOutlineDelete,
 } from "react-icons/ai";
 
 import { Claims, getSession } from "@auth0/nextjs-auth0";
@@ -115,6 +115,8 @@ export default async function Page({ params }: { params: { id: string } }) {
             oriImgUrl={oriImgUrl}
             timeLeft={timeLeft}
             youtubeBaseUrl={youtubeBaseUrl}
+            imageId={imgData?.id}
+            isOwner={isOwner}
           />
           <ImageRevealSectionComponent
             percentageProgress={percentageProgress}
@@ -125,18 +127,15 @@ export default async function Page({ params }: { params: { id: string } }) {
         </div>
 
         {isOwner && (
-          <UploadForm
-            {...imgData}
-            sub={imgData.owner}
-            method="PUT"
-            id={params.id}
-          />
+          <>
+            <UploadForm
+              {...imgData}
+              sub={imgData.owner}
+              method="PUT"
+              id={params.id}
+            />
+          </>
         )}
-        <form action={deleteImage}>
-          <input type="hidden" name="id" value={imgData.id} readOnly />
-          <input type="hidden" name="path" value={`/`} readOnly />
-          <button type="submit">Delete</button>
-        </form>
       </div>
     </>
   );
@@ -166,6 +165,8 @@ function ImageStatsSectionComponent({
   progress,
   youtubeBaseUrl,
   targetUrl,
+  imageId,
+  isOwner,
 }: {
   percentageProgressLeft: string;
   currentLikesCount: number;
@@ -176,6 +177,8 @@ function ImageStatsSectionComponent({
   progress: number;
   youtubeBaseUrl: string;
   targetUrl: string;
+  imageId: string;
+  isOwner: boolean;
 }) {
   return (
     <div className="flex flex-col gap-4">
@@ -247,6 +250,19 @@ function ImageStatsSectionComponent({
             </>
           )}
         </div>
+        {isOwner && (
+          <form action={deleteImage}>
+            <input type="hidden" name="id" value={imageId} readOnly />
+            <input type="hidden" name="path" value={`/`} readOnly />
+            <button
+              type="submit"
+              className="btn flex items-center justify-center gap-1 text-lg md:text-xl w-full"
+            >
+              <AiOutlineDelete />
+              <div>Delete</div>
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );
