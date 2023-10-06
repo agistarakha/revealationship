@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import prisma from "@/db";
 import { oxygen } from "@/fonts";
+import GoToElement from "@/components/GoToElement";
 
 export default async function Home() {
   const session = await getSession();
@@ -41,13 +42,23 @@ function HeaderSection() {
           Reveal Your Image
         </h1>
         <p className="text-xl sm:text-2xl">Give User Engagement Rewards</p>
-        <div className="">
-          <button
+        <div className="flex gap-2">
+          <GoToElement
             className={`${oxygen.className} text-xl sm:text-2xl btn rounded`}
+            targetId="upload-form"
           >
-            Get Started
-          </button>
+            Upload Image
+          </GoToElement>
+
+          <GoToElement
+            className={`${oxygen.className} text-xl sm:text-2xl btn rounded`}
+            targetId="learn-section"
+          >
+            Learn More
+          </GoToElement>
         </div>
+
+        <div></div>
       </div>
       <div>
         <img
@@ -62,7 +73,7 @@ function HeaderSection() {
 function UploadSectionComponent({ sub }: { sub: string }) {
   return (
     <div className="flex flex-col gap-4">
-      <div>
+      <div id="upload-form">
         <h2 className={`${oxygen.className} text-2xl sm:text-4xl text-center`}>
           Upload Image
         </h2>
@@ -76,7 +87,7 @@ function UploadSectionComponent({ sub }: { sub: string }) {
 }
 function TutorialSectionComponent() {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6" id="learn-section">
       <div>
         <h1 className={`${oxygen.className} text-2xl sm:text-4xl text-center`}>
           How To

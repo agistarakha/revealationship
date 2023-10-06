@@ -11,6 +11,19 @@
     }
 }
 
+::-webkit-scrollbar {
+    width: 16px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-stone-800 rounded-lg
+}
+
+::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    background-clip: content-box;
+    @apply bg-stone-700 rounded-lg
+}
 ::-moz-selection {
     /* Code for Firefox */
     color: black;
