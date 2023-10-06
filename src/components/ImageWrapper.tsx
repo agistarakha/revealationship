@@ -109,7 +109,7 @@ export default function ImageWrapper({
       >
         <div
           style={absolutePos.style1}
-          className={`${absolutePos.className1} bg-stone-900 absolute shadow-md shadow-black rounded transition-all duration-700`}
+          className={`${absolutePos.className1} bg-stone-900 absolute shadow shadow-black rounded transition-all duration-700`}
         >
           <div
             className={`text-center transition-opacity ${
@@ -120,7 +120,7 @@ export default function ImageWrapper({
           </div>
         </div>
         <div
-          className={`${absolutePos.className2} bg-stone-800 absolute shadow-md shadow-black rounded transition-all duration-700`}
+          className={`${absolutePos.className2} bg-stone-800 absolute shadow shadow-black rounded transition-all duration-700`}
           style={absolutePos.style2}
         ></div>
       </div>

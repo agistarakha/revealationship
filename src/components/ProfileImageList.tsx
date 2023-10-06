@@ -65,10 +65,14 @@ export default function ProfileImageList({
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isLoading]);
   return (
-    <div className="flex flex-wrap gap-2">
-      {images.map((image) => (
-        <ProfileImageItem {...image} />
-      ))}
+    <div>
+      <div className="flex flex-wrap gap-2">
+        {images.map((image) => (
+          <ProfileImageItem {...image} />
+        ))}
+
+        {/* <Image src="/loading3.gif" alt="loading gif" width={100} height={100} /> */}
+      </div>
       {isLoading && (
         <Image
           src="/loading2.svg"
@@ -79,7 +83,6 @@ export default function ProfileImageList({
         />
       )}
       {error && <p>Error: {error.message}</p>}
-      {/* <Image src="/loading3.gif" alt="loading gif" width={100} height={100} /> */}
     </div>
   );
 }

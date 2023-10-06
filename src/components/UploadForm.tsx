@@ -2,11 +2,7 @@ import ImageInput from "@/components/ImageInput";
 import { imageFormAction } from "@/actions/imageFormAction";
 import FormButton from "./FormButton";
 
-import { Oxygen } from "next/font/google";
-const oxygen = Oxygen({
-  weight: "400",
-  subsets: ["latin"],
-});
+import { oxygen } from "@/fonts";
 type UploadFormProps = {
   sub?: string | undefined | null;
   target?: number | undefined;
@@ -48,7 +44,7 @@ export default async function UploadForm({
   return (
     <form
       action={imageFormAction}
-      className="bg-stone-800 border border-stone-700 shadow rounded flex flex-col gap-2 p-4 w-10/12 md:w-8/12  mx-auto"
+      className=" border border-stone-700 rounded flex flex-col gap-2 p-4 w-10/12 md:w-8/12  mx-auto shadow shadow-black"
     >
       {method !== "PUT" && <ImageInput oxygenClassname={oxygen.className} />}
 
@@ -57,7 +53,7 @@ export default async function UploadForm({
           Title
         </label>
         <input
-          className="bg-stone-700 rounded-lg p-2 border border-stone-600"
+          className="form-input"
           type="text"
           name="title"
           id="title"
@@ -72,7 +68,7 @@ export default async function UploadForm({
           Short Description
         </label>
         <textarea
-          className="bg-stone-700 rounded-lg p-2 border border-stone-600"
+          className="form-input"
           name="description"
           id="description"
           defaultValue={description}
@@ -87,7 +83,7 @@ export default async function UploadForm({
           Target Likes
         </label>
         <input
-          className="bg-stone-700 rounded-lg p-2 border border-stone-600"
+          className="form-input"
           type="number"
           name="target"
           id="target"
@@ -101,7 +97,7 @@ export default async function UploadForm({
           Expired Date
         </label>
         <input
-          className="bg-stone-700 rounded-lg p-2 border border-stone-600"
+          className="form-input"
           type="datetime-local"
           name="expiredDate"
           id="expiredDate"
@@ -116,7 +112,7 @@ export default async function UploadForm({
           Target Post
         </label>
         <input
-          className="bg-stone-700 rounded-lg p-2 border border-stone-600"
+          className="form-input"
           type="text"
           name="targetUrl"
           id="targetUrl"
@@ -136,7 +132,7 @@ export default async function UploadForm({
           <select
             name="revealDirection"
             id="revealDirection"
-            className="bg-stone-700 rounded-lg p-2 border border-stone-600"
+            className="form-input"
             defaultValue={revealDirection}
             required
           >

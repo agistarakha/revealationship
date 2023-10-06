@@ -18,7 +18,7 @@ export default function ProfileImageItem({
   description,
 }: ProfileImageItemProps) {
   return (
-    <div className="shadow shadow-black w-max mx-auto p-2 border border-stone-600 rounded-lg flex flex-col gap-4">
+    <div className="shadow shadow-black w-max mx-auto p-2 border border-stone-700 rounded-lg flex flex-col gap-4">
       {/* {!isImageLoaded && (
         <Image
           src="/loading2.svg"

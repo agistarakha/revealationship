@@ -24,9 +24,8 @@ export default function ({ user }: UserClaimsProps) {
           flex flex-col align-middle
           absolute -bottom-28 right-0
           p-2 
-          bg-stone-800
           border
-          border-stone-600
+          border-stone-700
           rounded
           shadow
           z-20

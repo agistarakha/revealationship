@@ -13,12 +13,8 @@ import UploadForm from "@/components/UploadForm";
 import ImageWrapper from "@/components/ImageWrapper";
 import Navbar from "@/components/Navbar";
 import { deleteImage } from "@/actions/deleteImageAction";
-import { Oxygen } from "next/font/google";
 import CopyUrlBtn from "@/components/CopyUrlBtn";
-const oxygen = Oxygen({
-  weight: "400",
-  subsets: ["latin"],
-});
+import { oxygen } from "@/fonts";
 type TimeFormat = "days" | "hours" | "minutes";
 function calculateTimeLeft(
   startDate: Date,
@@ -290,7 +286,7 @@ function ImageRevealSectionComponent({
         alt="Covered Image"
         width={300}
         height={400}
-        className="mx-auto shadow-sm shadow-black lg:w-96 w-64"
+        className="mx-auto shadow shadow-black lg:w-96 w-64"
         priority={true}
         placeholder="blur"
         blurDataURL="/loading2.svg"

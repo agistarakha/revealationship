@@ -22,7 +22,7 @@ export default function Page({
         </label>
 
         <input
-          className="bg-stone-700 rounded-lg  border border-stone-600"
+          className="form-input"
           type="file"
           name="file"
           onChange={(e) => setFile(e.target.files?.[0])}
@@ -40,7 +40,7 @@ export default function Page({
                 width={200}
                 height={0}
                 alt="Preview Image"
-                className="shadow-sm shadow-black md:w-64 w-48"
+                className="shadow shadow-black md:w-64 w-48"
                 placeholder="blur"
                 blurDataURL="/loading2.svg"
                 style={{ height: "auto" }}
@@ -58,7 +58,7 @@ export default function Page({
                 <select
                   name="revealDirection"
                   id="revealDirection"
-                  className="bg-stone-700 rounded-lg p-2 border border-stone-600"
+                  className="form-input"
                   required
                   value={revealDirection}
                   onChange={(e) => {

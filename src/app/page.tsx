@@ -3,12 +3,7 @@ import UploadForm from "@/components/UploadForm";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import prisma from "@/db";
-import { Oxygen } from "next/font/google";
-
-const oxygen = Oxygen({
-  weight: "400",
-  subsets: ["latin"],
-});
+import { oxygen } from "@/fonts";
 
 export default async function Home() {
   const session = await getSession();
@@ -106,7 +101,7 @@ function TutorialItemComponent({ isReverse }: { isReverse?: boolean }) {
         />
       </div>
       <div
-        className={`w-72 sm:w-96 xl:w-128 flex flex-col justify-center gap-4 bg-red-800 ${
+        className={`w-72 sm:w-96 xl:w-128 flex flex-col justify-center gap-4  ${
           isReverse ? "lg:order-first" : "order-none"
         }`}
       >

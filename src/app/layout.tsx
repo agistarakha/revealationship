@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Roboto } from "next/font/google";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
-import { Oxygen } from "next/font/google";
 import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
