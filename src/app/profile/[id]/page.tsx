@@ -7,6 +7,8 @@ async function getAllImages(owner: string) {
   const allImages = await prisma.image.findMany({
     select: {
       id: true,
+      title: true,
+      description: true,
       url: true,
     },
     where: {

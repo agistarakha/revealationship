@@ -30,6 +30,8 @@ export async function GET(req: NextRequest) {
     },
     select: {
       id: true,
+      title: true,
+      description: true,
       url: true,
     },
     orderBy: {

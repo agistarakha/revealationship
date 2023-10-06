@@ -2,10 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import ProfileImageItem from "./ProfileImageItem";
 type ProfileImageListProps = {
-  initialData: Array<{ url: string; id: string }>;
+  initialData: Array<{
+    url: string;
+    id: string;
+    title: string;
+    description: string;
+  }>;
   owner: string;
 };
 
@@ -61,9 +65,9 @@ export default function ProfileImageList({
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isLoading]);
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-wrap gap-2">
       {images.map((image) => (
-        <ProfileImageItem imageId={image.id} imageUrl={image.url} />
+        <ProfileImageItem {...image} />
       ))}
       {isLoading && (
         <Image
