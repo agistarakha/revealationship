@@ -31,7 +31,7 @@ export default async function Home() {
       <Navbar user={user} />
       <div className="flex flex-col gap-24">
         <HeaderSection />
-        <UploadSectionComponent user={user} />
+        <UploadSectionComponent sub={user?.sub} />
         <UseCaseSectionComponent />
         <TutorialSectionComponent />
       </div>
@@ -64,7 +64,7 @@ function HeaderSection() {
     </div>
   );
 }
-function UploadSectionComponent(user: Claims) {
+function UploadSectionComponent({ sub }: { sub: string }) {
   return (
     <div className="flex flex-col gap-4">
       <div>
@@ -75,7 +75,7 @@ function UploadSectionComponent(user: Claims) {
           Need Help? Learn more here
         </p>
       </div>
-      <UploadForm sub={user?.sub} />
+      <UploadForm sub={sub} />
     </div>
   );
 }

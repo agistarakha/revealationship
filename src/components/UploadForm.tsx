@@ -146,8 +146,10 @@ export default async function UploadForm({
           </select>
         </div>
       )}
+      <h1>{sub}</h1>
+      <h1>Hello bos</h1>
       {sub && (
-        <input type="text" value={sub} name="owner" readOnly required hidden />
+        <input type="hidden" value={sub} name="owner" readOnly required />
       )}
 
       {id && (
