@@ -44,14 +44,14 @@ function HeaderSection() {
         <p className="text-xl sm:text-2xl">Give User Engagement Rewards</p>
         <div className="flex gap-2">
           <GoToElement
-            className={`${oxygen.className} text-xl sm:text-2xl btn rounded`}
+            className={` text-xl sm:text-2xl btn rounded`}
             targetId="upload-form"
           >
             Upload Image
           </GoToElement>
 
           <GoToElement
-            className={`${oxygen.className} text-xl sm:text-2xl btn rounded`}
+            className={` text-xl sm:text-2xl btn rounded`}
             targetId="learn-section"
           >
             Learn More
@@ -87,7 +87,7 @@ function UploadSectionComponent({ sub }: { sub: string }) {
 }
 function TutorialSectionComponent() {
   return (
-    <div className="flex flex-col gap-6" id="learn-section">
+    <div className="flex flex-col gap-6">
       <div>
         <h1 className={`${oxygen.className} text-2xl sm:text-4xl text-center`}>
           How To
@@ -128,7 +128,7 @@ function TutorialItemComponent({ isReverse }: { isReverse?: boolean }) {
 
 function UseCaseSectionComponent() {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6" id="learn-section">
       <div>
         <h1 className={`${oxygen.className} text-2xl sm:text-4xl text-center`}>
           Possible use case

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { AiOutlineDelete, AiOutlineEye } from "react-icons/ai";
 import { deleteImage } from "@/actions/deleteImageAction";
+import { oxygen } from "@/fonts";
 
 type ProfileImageItemProps = {
   url: string;
@@ -40,8 +41,10 @@ export default function ProfileImageItem({
       />
 
       <div className="md:w-96 sm:w-72 w-48">
-        <div className="w-full truncate">{title}</div>
-        <div className="w-full truncate">{description}</div>
+        <div className={`text-lg w-full truncate ${oxygen.className}`}>
+          {title}
+        </div>
+        <div className="text-md w-full truncate">{description}</div>
       </div>
       <div className="flex gap-2">
         <Link
