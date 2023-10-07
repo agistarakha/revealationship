@@ -18,30 +18,36 @@ export default function ({ user }: UserClaimsProps) {
           {/* <h2>{user.name}</h2>
               <p>{user.email}</p> */}
           <div
+            style={{ bottom: "-108px" }}
             className="
+            bg-stone-800
           scale-y-0 group-focus-within:scale-y-100
           origin-top transition-transform
-          flex flex-col align-middle
-          absolute -bottom-28 right-0
-          p-2 
+          flex flex-col align-middle 
+          absolute right-0
+          w-28
+          py-2 
           border
           border-stone-700
           rounded
-          shadow
+          shadow shadow-black
           z-20
           "
           >
-            <a href="/api/auth/logout" className="btn">
+            <a href="/api/auth/logout" className="py-1 hover:bg-stone-700">
               Logout
             </a>
-            <Link href={`/profile/${user.sub}`} className="btn">
-              Profile
+            <Link
+              href={`/profile/${user.sub}`}
+              className="py-1 hover:bg-stone-700"
+            >
+              My Reveal
             </Link>
           </div>
         </button>
       ) : (
         <a href="/api/auth/login" className="btn">
-          Sign Up
+          Sign In
         </a>
       )}
     </div>

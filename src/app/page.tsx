@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import prisma from "@/db";
 import { oxygen } from "@/fonts";
 import GoToElement from "@/components/GoToElement";
+import { ReactNode } from "react";
 
 export default async function Home() {
   const session = await getSession();
@@ -41,13 +42,15 @@ function HeaderSection() {
         <h1 className={`${oxygen.className} text-4xl sm:text-6xl`}>
           Reveal Your Image
         </h1>
-        <p className="text-xl sm:text-2xl">Give User Engagement Rewards</p>
+        <p className="text-xl sm:text-2xl">
+          Unlock Engagement Rewards with Your Audience
+        </p>
         <div className="flex gap-2">
           <GoToElement
             className={` text-xl sm:text-2xl btn rounded`}
             targetId="upload-form"
           >
-            Upload Image
+            Reveal Image
           </GoToElement>
 
           <GoToElement
@@ -73,13 +76,17 @@ function HeaderSection() {
 function UploadSectionComponent({ sub }: { sub: string }) {
   return (
     <div className="flex flex-col gap-4">
-      <div id="upload-form">
+      <div id="upload-form" className="flex flex-col items-center gap-1">
         <h2 className={`${oxygen.className} text-2xl sm:text-4xl text-center`}>
-          Upload Image
+          Ready to Reveal?
         </h2>
-        <p className="text-lg sm:text-xl text-center">
-          Need Help? Learn more here
-        </p>
+        <div className="text-lg sm:text-xl text-center w-10/12 lg:w-8/12">
+          Upload your image, set a goal, and optionally{" "}
+          <a href="/api/auth/login" className="underline">
+            Sign In
+          </a>{" "}
+          to take control of your reveals and manage your images.
+        </div>
       </div>
       <UploadForm sub={sub} />
     </div>
@@ -88,20 +95,43 @@ function UploadSectionComponent({ sub }: { sub: string }) {
 function TutorialSectionComponent() {
   return (
     <div className="flex flex-col gap-6">
-      <div>
+      <div className="flex flex-col items-center gap-1">
         <h1 className={`${oxygen.className} text-2xl sm:text-4xl text-center`}>
-          How To
+          Getting Started with Revealationship
         </h1>
-        <p className="text-lg sm:text-xl text-center">
-          This is step by step on how to upload your image reval
+        <p className="text-lg sm:text-xl text-center w-10/12 lg:w-8/12">
+          Here's a simple guide to using Revealationship to engage your
+          audience.
         </p>
       </div>
-      <TutorialItemComponent isReverse={true} />
-      <TutorialItemComponent />
+      <TutorialItemComponent isReverse={true} title="Upload">
+        Begin by uploading your image in the form section{" "}
+        <GoToElement targetId="upload-form" className="underline">
+          here
+        </GoToElement>
+        .
+      </TutorialItemComponent>
+      <TutorialItemComponent title="Share">
+        Share your image with your audience, and let them know about your
+        exciting goal.
+      </TutorialItemComponent>
+
+      <TutorialItemComponent isReverse={true} title="Manage">
+        If you're signed in, you can easily manage your images, edit goals, or
+        remove them.
+      </TutorialItemComponent>
     </div>
   );
 }
-function TutorialItemComponent({ isReverse }: { isReverse?: boolean }) {
+function TutorialItemComponent({
+  isReverse,
+  title,
+  children,
+}: {
+  isReverse?: boolean;
+  title: string;
+  children: ReactNode;
+}) {
   return (
     <div className={`flex flex-col items-center lg:flex-row lg:justify-around`}>
       <div>
@@ -116,10 +146,8 @@ function TutorialItemComponent({ isReverse }: { isReverse?: boolean }) {
           isReverse ? "lg:order-first" : "order-none"
         }`}
       >
-        <h3 className={`${oxygen.className} text-xl sm:text-2xl`}>
-          1. Upload Your Image
-        </h3>
-        <p className="text-md sm:text-lg">Give User Engagement Rewards</p>
+        <h3 className={`${oxygen.className} text-xl sm:text-2xl`}>{title}</h3>
+        <p className="text-md sm:text-lg">{children}</p>
         <div className=""></div>
       </div>
     </div>
@@ -129,25 +157,36 @@ function TutorialItemComponent({ isReverse }: { isReverse?: boolean }) {
 function UseCaseSectionComponent() {
   return (
     <div className="flex flex-col gap-6" id="learn-section">
-      <div>
+      <div className="flex flex-col items-center gap-1">
         <h1 className={`${oxygen.className} text-2xl sm:text-4xl text-center`}>
-          Possible use case
+          How You Can Use Revealationship
         </h1>
-        <p className="text-lg sm:text-xl text-center">
-          Revealationship provide a platform to get your follower Engagement by
-          give them reward
+        <p className="text-lg sm:text-xl text-center w-10/12 lg:w-8/12">
+          Revealationship offers a platform to boost your audience engagement by
+          offering exciting rewards.
         </p>
       </div>
       <div className="flex justify-around flex-wrap">
-        <UseCaseItemComponent />
-        <UseCaseItemComponent />
-        <UseCaseItemComponent />
+        <UseCaseItemComponent
+          title="Face Reveal"
+          subTitle="Share your face with your audience when your video reaches a specific like threshold."
+        />
+        <UseCaseItemComponent
+          title="Artictic Reveals"
+          subTitle="Join the trend of sharing your artwork and revealing it based on likes."
+        />
       </div>
     </div>
   );
 }
 
-function UseCaseItemComponent() {
+function UseCaseItemComponent({
+  title,
+  subTitle,
+}: {
+  title: string;
+  subTitle: string;
+}) {
   return (
     <>
       <div className="flex flex-col text-center">
@@ -156,8 +195,12 @@ function UseCaseItemComponent() {
           alt=""
           className="w-48 sm:w-64 xl:w-72"
         />
-        <div className={`${oxygen.className} text-md sm:text-lg`}>Title</div>
-        <div className="text-md sm:text-lg">Sub Title</div>
+        <div className="w-48 sm:w-64 xl:w-72">
+          <div className={`${oxygen.className} text-md sm:text-lg`}>
+            {title}
+          </div>
+          <div className="text-md sm:text-lg">{subTitle}</div>
+        </div>
       </div>
     </>
   );
