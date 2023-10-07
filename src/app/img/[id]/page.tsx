@@ -184,9 +184,9 @@ function ImageStatsSectionComponent({
   return (
     <div className="flex flex-col gap-4">
       <div>
-        <div className="bg-red-900 rounded-full">
+        <div className="w-full bg-stone-600 rounded-full h-2.5">
           <div
-            className="bg-stone-900 h-2 rounded-full"
+            className="bg-stone-900 h-2.5 rounded-full"
             style={{ width: `${percentageProgressLeft}%` }}
           ></div>
         </div>

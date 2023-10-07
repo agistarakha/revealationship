@@ -46,9 +46,11 @@ export default function ({ user }: UserClaimsProps) {
           </div>
         </button>
       ) : (
-        <a href="/api/auth/login" className="btn">
-          Sign In
-        </a>
+        <div className="p-1">
+          <a href="/api/auth/login" className="btn">
+            Sign In
+          </a>
+        </div>
       )}
     </div>
   );

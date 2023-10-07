@@ -45,6 +45,7 @@ export default async function UploadForm({
     <form
       action={imageFormAction}
       className=" border border-stone-700 rounded flex flex-col gap-2 p-4 w-10/12 md:w-8/12  mx-auto shadow shadow-black"
+      autoComplete="off"
     >
       {method !== "PUT" && <ImageInput oxygenClassname={oxygen.className} />}
 
@@ -53,6 +54,7 @@ export default async function UploadForm({
           Title
         </label>
         <input
+          placeholder="Reveal Title(Max 50 Characters)"
           className="form-input"
           type="text"
           name="title"
@@ -68,6 +70,7 @@ export default async function UploadForm({
           Short Description
         </label>
         <textarea
+          placeholder="Short Description (Max 100 Characters)"
           className="form-input"
           name="description"
           id="description"
@@ -83,6 +86,7 @@ export default async function UploadForm({
           Target Likes
         </label>
         <input
+          placeholder="Youtube video likes goals"
           className="form-input"
           type="number"
           name="target"
@@ -109,10 +113,11 @@ export default async function UploadForm({
 
       <div className="flex flex-col">
         <label className={`${oxygen.className} text-lg`} htmlFor="targetUrl">
-          Target Post
+          Target URL
         </label>
         <input
-          className="form-input"
+          placeholder="YouTube video URL"
+          className="form-input peer"
           type="text"
           name="targetUrl"
           id="targetUrl"
@@ -120,6 +125,18 @@ export default async function UploadForm({
           min={1}
           required
         />
+        <div className="hidden peer-focus:block text-stone-200">
+          <h2 className="text-sm">Supported URL formats:</h2>
+          <ul className=" list-disc list-inside text-sm">
+            <li>https://youtu.be/[videoId]</li>
+            <li>https://www.youtube.com/watch?v=[videoId]</li>
+            <li>https://www.youtube.com/embed/[videoId]</li>
+            <li>https://www.youtube.com/v/[videoId]</li>
+            <li>
+              https://www.youtube.com/watch?feature=player_embedded&v=[videoId]
+            </li>
+          </ul>
+        </div>
       </div>
       {method == "PUT" && (
         <div className="flex flex-col">

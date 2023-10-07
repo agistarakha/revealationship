@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import Image from "next/image";
 import ImageWrapper from "@/components/ImageWrapper";
 
@@ -10,9 +10,28 @@ export default function Page({
 }) {
   const [file, setFile] = useState<File | undefined>();
   const [percentage, setPercentage] = useState(50);
+  const imageRef = useRef(null);
   const [revealDirection, setRevealDirection] = useState("bottom");
   const percentageLeft = 100 - percentage;
   const imgUrl = file ? URL.createObjectURL(file) : "";
+  const imageComponent = useMemo(() => {
+    if (file) {
+      return (
+        <Image
+          ref={imageRef}
+          src={imgUrl}
+          width={200}
+          height={0}
+          alt="Preview Image"
+          className="shadow shadow-black md:w-64 w-48"
+          placeholder="blur"
+          blurDataURL="/loading2.svg"
+          style={{ height: "auto" }}
+        />
+      );
+    }
+    return null;
+  }, [file]);
 
   return (
     <>
@@ -35,16 +54,7 @@ export default function Page({
           <div>Preview</div>
           <div className="flex flex-col md:flex-row justify-center items-center gap-2">
             <div className="relative w-max">
-              <Image
-                src={imgUrl}
-                width={200}
-                height={0}
-                alt="Preview Image"
-                className="shadow shadow-black md:w-64 w-48"
-                placeholder="blur"
-                blurDataURL="/loading2.svg"
-                style={{ height: "auto" }}
-              />
+              {imageComponent}
               <ImageWrapper
                 percentageProgress={percentageLeft.toString()}
                 percentageProgressLeft={percentage.toString()}
@@ -71,7 +81,7 @@ export default function Page({
                   <option value="right">right</option>
                 </select>
               </div>
-              <div className="flex justify-center">
+              <div className="flex justify-center gap-1">
                 <input
                   type="range"
                   id="percentage"

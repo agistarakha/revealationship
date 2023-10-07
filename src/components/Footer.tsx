@@ -3,7 +3,7 @@ export default function Footer() {
   return (
     <>
       <div className="py-24"></div>
-      <footer className="sm:flex sm:items-center sm:justify-between p-4 border border-stone-700">
+      <footer className="sm:flex sm:items-center sm:justify-between p-4 border-t border-stone-700">
         <span className="text-sm  sm:text-center ">
           © 2023{" "}
           <Link href="/" className="hover:underline">
