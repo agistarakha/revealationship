@@ -1,6 +1,7 @@
 import ImageInput from "@/components/ImageInput";
 import { imageFormAction } from "@/actions/imageFormAction";
 import FormButton from "./FormButton";
+import UrlFormInput from "./UrlFormInput";
 
 import { oxygen } from "@/fonts";
 type UploadFormProps = {
@@ -115,28 +116,7 @@ export default async function UploadForm({
         <label className={`${oxygen.className} text-lg`} htmlFor="targetUrl">
           Target URL
         </label>
-        <input
-          placeholder="YouTube video URL"
-          className="form-input peer"
-          type="text"
-          name="targetUrl"
-          id="targetUrl"
-          defaultValue={targetUrl && `${youtubeBaseUrl}${targetUrl}`}
-          min={1}
-          required
-        />
-        <div className="hidden peer-focus:block text-stone-200">
-          <h2 className="text-sm">Supported URL formats:</h2>
-          <ul className=" list-disc list-inside text-sm">
-            <li>https://youtu.be/[videoId]</li>
-            <li>https://www.youtube.com/watch?v=[videoId]</li>
-            <li>https://www.youtube.com/embed/[videoId]</li>
-            <li>https://www.youtube.com/v/[videoId]</li>
-            <li>
-              https://www.youtube.com/watch?feature=player_embedded&v=[videoId]
-            </li>
-          </ul>
-        </div>
+        <UrlFormInput targetUrl={targetUrl} youtubeBaseUrl={youtubeBaseUrl} />
       </div>
       {method == "PUT" && (
         <div className="flex flex-col">
