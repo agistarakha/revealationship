@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
 
-export default function FormButton() {
+type FormButtonProps = {
+  children?: React.ReactNode;
+  className?: string;
+};
+export default function FormButton({ children, className }: FormButtonProps) {
   const { pending } = useFormStatus();
 
   return (
@@ -11,7 +15,10 @@ export default function FormButton() {
       {pending ? (
         <div>Loading...</div>
       ) : (
-        <input type="submit" value="Upload" className="btn" />
+        <button type="submit" className={className ? className : "btn"}>
+          {children ? children : "Submit"}
+        </button>
+        // <input type="submit" value="Submit" className="btn" />
       )}
     </div>
   );

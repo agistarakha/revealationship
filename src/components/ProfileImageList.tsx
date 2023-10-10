@@ -33,6 +33,8 @@ export default function ProfileImageList({
       );
       const data: any[] = await response.json();
       if (data.length === 0) {
+        console.log(data);
+
         setIsLastPage(true);
         return;
       }
@@ -47,12 +49,21 @@ export default function ProfileImageList({
   };
 
   const handleScroll = () => {
+    // console.log("{");
+    // console.log("inner height: " + window.innerHeight);
+    // console.log("Scroll Y: " + document.documentElement.scrollTop);
+    // const IHY = window.innerHeight + document.documentElement.scrollTop;
+
+    // console.log("IH + Y: " + IHY);
+    // console.log("Offseit height: " + document.body.offsetHeight);
+    // console.log("}");
     if (isLastPage) {
       return;
     }
+
     if (
-      window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight ||
+      window.innerHeight + document.documentElement.scrollTop <
+        document.documentElement.offsetHeight - 2 ||
       isLoading
     ) {
       return;
@@ -68,7 +79,7 @@ export default function ProfileImageList({
     <div>
       <div className="flex flex-wrap gap-2">
         {images.map((image) => (
-          <ProfileImageItem {...image} />
+          <ProfileImageItem {...image} key={image.id} />
         ))}
 
         {/* <Image src="/loading3.gif" alt="loading gif" width={100} height={100} /> */}
