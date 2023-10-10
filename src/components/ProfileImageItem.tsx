@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AiOutlineDelete, AiOutlineEye } from "react-icons/ai";
 import { deleteImage } from "@/actions/deleteImageAction";
 import { oxygen } from "@/fonts";
+import FormButton from "./FormButton";
 
 type ProfileImageItemProps = {
   url: string;
@@ -60,13 +61,10 @@ export default function ProfileImageItem({
         <form action={deleteImage}>
           <input type="hidden" name="id" value={id} readOnly />
           <input type="hidden" name="path" value={`/`} readOnly />
-          <button
-            type="submit"
-            className="btn flex items-center justify-center gap-1 text-lg md:text-xl w-full"
-          >
+          <FormButton className="btn flex items-center justify-center gap-1 text-lg md:text-xl w-full">
             <AiOutlineDelete />
             <div>Delete</div>
-          </button>
+          </FormButton>
         </form>
       </div>
     </div>

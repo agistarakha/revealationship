@@ -4,6 +4,7 @@ import ProfileImageList from "@/components/ProfileImageList";
 import Navbar from "@/components/Navbar";
 import { getSession } from "@auth0/nextjs-auth0";
 async function getAllImages(owner: string) {
+  "use server";
   const allImages = await prisma.image.findMany({
     select: {
       id: true,

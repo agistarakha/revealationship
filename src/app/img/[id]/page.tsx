@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import FormButton from "@/components/FormButton";
 import {
   AiOutlineYoutube,
   AiOutlineDownload,
@@ -255,13 +256,10 @@ function ImageStatsSectionComponent({
           <form action={deleteImage}>
             <input type="hidden" name="id" value={imageId} readOnly />
             <input type="hidden" name="path" value={`/`} readOnly />
-            <button
-              type="submit"
-              className="btn flex items-center justify-center gap-1 text-lg md:text-xl w-full"
-            >
+            <FormButton className="btn flex items-center justify-center gap-1 text-lg md:text-xl w-full">
               <AiOutlineDelete />
               <div>Delete</div>
-            </button>
+            </FormButton>
           </form>
         )}
       </div>
