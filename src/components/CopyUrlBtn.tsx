@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { AiOutlineCopy, AiOutlineCheck } from "react-icons/ai";
-export default function () {
+export default function CopyUrlBtn() {
   const [clicked, setClicked] = useState(false);
   useEffect(() => {
     if (clicked) {
