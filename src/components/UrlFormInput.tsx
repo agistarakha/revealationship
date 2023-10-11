@@ -59,6 +59,18 @@ export default function UrlFormInput({
 
   return (
     <>
+      <div className="text-stone-200 w-full text-clip pb-2">
+        <h2 className="text-xs md:text-md">Supported URL formats:</h2>
+        <ul className=" list-disc list-inside text-xs md:text-md ">
+          <li>https://youtu.be/[videoId]</li>
+          <li>https://www.youtube.com/watch?v=[videoId]</li>
+          <li>https://www.youtube.com/embed/[videoId]</li>
+          <li>https://www.youtube.com/v/[videoId]</li>
+          <li>
+            https://www.youtube.com/watch?feature=player_embedded&v=[videoId]
+          </li>
+        </ul>
+      </div>
       <input
         placeholder="YouTube video URL"
         className="form-input peer"
@@ -72,19 +84,6 @@ export default function UrlFormInput({
       />
 
       {videoEmbed}
-      <div className="py-1"></div>
-      <div className="hidden peer-focus:block text-stone-200">
-        <h2 className="text-xs md:text-md">Supported URL formats:</h2>
-        <ul className=" list-disc list-inside text-xs md:text-md">
-          <li>https://youtu.be/[videoId]</li>
-          <li>https://www.youtube.com/watch?v=[videoId]</li>
-          <li>https://www.youtube.com/embed/[videoId]</li>
-          <li>https://www.youtube.com/v/[videoId]</li>
-          <li>
-            https://www.youtube.com/watch?feature=player_embedded&v=[videoId]
-          </li>
-        </ul>
-      </div>
     </>
   );
 }
