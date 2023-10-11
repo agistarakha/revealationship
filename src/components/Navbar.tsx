@@ -11,7 +11,7 @@ type NavbarProps = {
   user?: Claims;
 };
 
-export default function ({ user }: NavbarProps) {
+export default function Navbar({ user }: NavbarProps) {
   return (
     <>
       <nav className="border-b border-stone-700 flex p-2 gap-2 justify-between items-center">

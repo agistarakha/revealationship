@@ -5,7 +5,7 @@ type UserClaimsProps = {
   user?: Claims | undefined;
 };
 
-export default function ({ user }: UserClaimsProps) {
+export default function NavProfile({ user }: UserClaimsProps) {
   return (
     <div>
       {user ? (
