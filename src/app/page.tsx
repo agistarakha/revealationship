@@ -104,7 +104,7 @@ function TutorialSectionComponent() {
           Getting Started with Revealationship
         </h1>
         <p className="text-lg sm:text-xl text-center w-10/12 lg:w-8/12">
-          Here's a simple guide to using Revealationship to engage your
+          Here&apos;s a simple guide to using Revealationship to engage your
           audience.
         </p>
       </div>
@@ -129,8 +129,8 @@ function TutorialSectionComponent() {
         title="Manage"
         imgUrl="/manageTutor.gif"
       >
-        If you're signed in, you can easily manage your images, edit goals, or
-        remove them.
+        If you&apos;re signed in, you can easily manage your images, edit goals,
+        or remove them.
       </TutorialItemComponent>
     </div>
   );
