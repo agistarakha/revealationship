@@ -6,6 +6,7 @@ import prisma from "@/db";
 import { oxygen } from "@/fonts";
 import GoToElement from "@/components/GoToElement";
 import { ReactNode } from "react";
+import Image from "next/image";
 
 export default async function Home() {
   const session = await getSession();
@@ -64,10 +65,13 @@ function HeaderSection() {
         <div></div>
       </div>
       <div>
-        <img
-          src="https://placehold.co/600x400"
-          alt=""
+        <Image
+          src="/likeReveal.gif"
+          alt="Reveal gif"
+          width="500"
+          height="500"
           className="w-72 sm:w-96 xl:w-128"
+          priority={true}
         />
       </div>
     </div>
@@ -104,19 +108,27 @@ function TutorialSectionComponent() {
           audience.
         </p>
       </div>
-      <TutorialItemComponent isReverse={true} title="Upload">
+      <TutorialItemComponent
+        isReverse={true}
+        title="Upload"
+        imgUrl="/uploadTutor.gif"
+      >
         Begin by uploading your image in the form section{" "}
         <GoToElement targetId="upload-form" className="underline">
           here
         </GoToElement>
         .
       </TutorialItemComponent>
-      <TutorialItemComponent title="Share">
+      <TutorialItemComponent title="Share" imgUrl="/shareTutor.gif">
         Share your image with your audience, and let them know about your
         exciting goal.
       </TutorialItemComponent>
 
-      <TutorialItemComponent isReverse={true} title="Manage">
+      <TutorialItemComponent
+        isReverse={true}
+        title="Manage"
+        imgUrl="/manageTutor.gif"
+      >
         If you're signed in, you can easily manage your images, edit goals, or
         remove them.
       </TutorialItemComponent>
@@ -127,28 +139,32 @@ function TutorialItemComponent({
   isReverse,
   title,
   children,
+  imgUrl,
 }: {
   isReverse?: boolean;
   title: string;
   children: ReactNode;
+  imgUrl: string;
 }) {
   return (
     <div className={`flex flex-col items-center lg:flex-row lg:justify-around`}>
       <div>
-        <img
-          src="https://placehold.co/600x400"
-          alt=""
-          className="w-72 sm:w-96 xl:w-128"
+        <Image
+          src={imgUrl}
+          alt="Tutorial"
+          width={500}
+          height={500}
+          className="w-72 sm:w-96 xl:w-128 shadow shadow-black"
         />
       </div>
+      <div className="py-1 lg:py-0"></div>
       <div
-        className={`w-72 sm:w-96 xl:w-128 flex flex-col justify-center gap-4  ${
+        className={`w-72 sm:w-96 xl:w-128 flex flex-col justify-center gap-1  ${
           isReverse ? "lg:order-first" : "order-none"
         }`}
       >
         <h3 className={`${oxygen.className} text-xl sm:text-2xl`}>{title}</h3>
         <p className="text-md sm:text-lg">{children}</p>
-        <div className=""></div>
       </div>
     </div>
   );
@@ -170,10 +186,12 @@ function UseCaseSectionComponent() {
         <UseCaseItemComponent
           title="Face Reveal"
           subTitle="Share your face with your audience when your video reaches a specific like threshold."
+          imgUrl="/faceReveal.png"
         />
         <UseCaseItemComponent
           title="Artictic Reveals"
           subTitle="Join the trend of sharing your artwork and revealing it based on likes."
+          imgUrl="/artReveal.png"
         />
       </div>
     </div>
@@ -183,17 +201,21 @@ function UseCaseSectionComponent() {
 function UseCaseItemComponent({
   title,
   subTitle,
+  imgUrl,
 }: {
   title: string;
   subTitle: string;
+  imgUrl: string;
 }) {
   return (
     <>
       <div className="flex flex-col text-center">
-        <img
-          src="https://placehold.co/600x400"
-          alt=""
-          className="w-48 sm:w-64 xl:w-72"
+        <Image
+          src={imgUrl}
+          width="500"
+          height="500"
+          alt="Use Case Reveal"
+          className="w-48 sm:w-64 xl:w-72 "
         />
         <div className="w-48 sm:w-64 xl:w-72">
           <div className={`${oxygen.className} text-md sm:text-lg`}>

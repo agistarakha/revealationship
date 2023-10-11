@@ -22,7 +22,7 @@ export default function UrlFormInput({
 
   const youtubeEmbedBaseUrl = "https://www.youtube.com/embed/";
   const videoEmbed = useMemo(() => {
-    if (youtubeEmbedUrl == youtubeEmbedBaseUrl) {
+    if (youtubeEmbedUrl == youtubeEmbedBaseUrl || youtubeEmbedUrl === "") {
       return "";
     }
     return (
