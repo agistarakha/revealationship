@@ -23,7 +23,7 @@ export default function ProfileImageList({
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false);
 
-  const baseUrl = "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   const fetchData = async () => {
     setIsLoading(true);

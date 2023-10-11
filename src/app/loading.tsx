@@ -11,7 +11,7 @@ export default function Page() {
     <>
       <div className="mx-auto text-center">
         <Image
-          src="/Loading2.svg"
+          src="/loading2.svg"
           width={500}
           height={500}
           alt="loading animation"
