@@ -204,7 +204,7 @@ function ImageStatsSectionComponent({
         <div className="text-center flex justify-between gap-4 ">
           {Object.keys(timeLeft).map((key) => {
             return (
-              <div>
+              <div key={key}>
                 <div className={`${oxygen.className} text-2xl m:text-4xl`}>
                   {timeLeft[key]}
                 </div>
