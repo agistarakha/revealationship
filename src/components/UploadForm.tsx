@@ -134,7 +134,11 @@ export default async function UploadForm({
             required
           >
             {["bottom", "top", "left", "right"].map((e) => {
-              return <option value={e}>{e}</option>;
+              return (
+                <option value={e} key={e}>
+                  {e}
+                </option>
+              );
             })}
           </select>
         </div>
