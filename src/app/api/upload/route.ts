@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
   const client_s3 = new S3({
     region: process.env.AWS_REGION,
     accessKeyId: process.env.AWS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
+    secretAccessKey: process.env.AWS_SECRET,
     signatureVersion: "v4",
   });
 
