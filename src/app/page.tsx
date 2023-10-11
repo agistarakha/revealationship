@@ -186,12 +186,12 @@ function UseCaseSectionComponent() {
         <UseCaseItemComponent
           title="Face Reveal"
           subTitle="Share your face with your audience when your video reaches a specific like threshold."
-          imgUrl="/faceReveal.png"
+          imgUrl="/faceReveal.PNG"
         />
         <UseCaseItemComponent
           title="Artictic Reveals"
           subTitle="Join the trend of sharing your artwork and revealing it based on likes."
-          imgUrl="/artReveal.png"
+          imgUrl="/artReveal.PNG"
         />
       </div>
     </div>
