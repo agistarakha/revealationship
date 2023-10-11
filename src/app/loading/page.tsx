@@ -3,10 +3,6 @@
 import { useEffect } from "react";
 import Image from "next/image";
 export default function Page() {
-  useEffect(() => {
-    // const footer = document.querySelector("footer");
-    // footer?.remove();
-  }, []);
   return (
     <>
       <div className="mx-auto text-center">
