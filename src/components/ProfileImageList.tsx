@@ -23,18 +23,18 @@ export default function ProfileImageList({
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false);
 
+  const baseUrl = "http://localhost:3000";
+
   const fetchData = async () => {
     setIsLoading(true);
     setError(null);
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/img?page=${page}&owner=${owner}`
+        `${baseUrl}/api/img?page=${page}&owner=${owner}`
       );
       const data: any[] = await response.json();
       if (data.length === 0) {
-        console.log(data);
-
         setIsLastPage(true);
         return;
       }

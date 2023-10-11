@@ -72,8 +72,9 @@ async function getProgress(likesTarget: number, likesCount: number) {
 export default async function Page({ params }: { params: { id: string } }) {
   const session = await getSession();
   const user = session?.user;
-  const currentUrl = `${process.env.BASE_URL}/img${params.id}`;
-  const imgUrl = `http://localhost:3000/api/img/${params.id}`;
+  const baseUrl = process.env.BASE_URL;
+  const currentUrl = `${baseUrl}/img${params.id}`;
+  const imgUrl = `${baseUrl}/api/img/${params.id}`;
   const youtubeBaseUrl = `https://youtu.be/`;
   const imgData = await prisma.image.findFirst({ where: { id: params.id } });
   if (!imgData) {

@@ -52,7 +52,6 @@ export default function UrlFormInput({
     const newTimeout = setTimeout(() => {
       const youtubeVideoId = getYoutubeId(value);
       setYoutubeEmbedUrl(youtubeEmbedBaseUrl + youtubeVideoId);
-      console.log(youtubeEmbedUrl);
     }, 1000); // Adjust the delay (in milliseconds) as needed
     typingTimeout.current = newTimeout;
   };
