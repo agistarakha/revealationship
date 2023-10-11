@@ -17,6 +17,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "revealationship.vercel.app",
+        port: "",
+        pathname: "/api/img/**",
+      },
     ],
   },
 };
