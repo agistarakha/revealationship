@@ -129,12 +129,22 @@ export async function GET(
 ) {
   const imageData = await prisma.image.findFirst({ where: { id: params.id } });
   if (!imageData) {
-    return "";
+    return NextResponse.json(
+      {
+        error: "Failed getting image data",
+      },
+      { status: 500 }
+    );
   }
   const progress = await getProgress(imageData.target, imageData.targetUrl);
   const originalImg = await getOriginalImage(imageData.url);
   if (!originalImg) {
-    return "";
+    return NextResponse.json(
+      {
+        error: "Failed getting original image",
+      },
+      { status: 500 }
+    );
   }
   const newImg = await getCoveredImage(
     originalImg,
@@ -143,7 +153,7 @@ export async function GET(
   );
   const headers = new Headers();
   headers.set("Content-Type", "image/*");
-  return new NextResponse(newImg, {
+  return new Response(newImg, {
     status: 200,
     statusText: "OK",
     headers,
