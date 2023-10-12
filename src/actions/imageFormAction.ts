@@ -11,7 +11,7 @@ async function updateImageData(
   id: string,
   target: number,
   targetUrl: string,
-  expiredDate: Date,
+  expiredDate: number,
   title: string,
   description: string,
   revealDirection: string
@@ -69,10 +69,12 @@ export async function imageFormAction(data: FormData) {
     throw new Error("Invalid description");
   }
 
-  const expiredDate = data.get("expiredDate") as unknown as Date | null;
+  const expiredDate = data.get("expiredDate") as unknown as string | null;
   if (!expiredDate) {
     throw new Error("Invalid expiration date");
   }
+  const timeStamp = Date.parse(expiredDate);
+
   const revealDirection = data.get("revealDirection")?.valueOf();
   if (typeof revealDirection !== "string") {
     throw new Error("Invalid revealDirection");
@@ -86,7 +88,7 @@ export async function imageFormAction(data: FormData) {
       id,
       target,
       targetUrl,
-      expiredDate,
+      timeStamp,
       title,
       description,
       revealDirection
@@ -108,7 +110,7 @@ export async function imageFormAction(data: FormData) {
         targetUrl,
         url: fileName,
         owner,
-        expiredDate: new Date(expiredDate),
+        expiredDate: new Date(timeStamp),
         title,
         description,
         revealDirection,
