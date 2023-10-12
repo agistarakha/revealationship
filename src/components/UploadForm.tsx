@@ -2,6 +2,7 @@ import ImageInput from "@/components/ImageInput";
 import { imageFormAction } from "@/actions/imageFormAction";
 import FormButton from "./FormButton";
 import UrlFormInput from "./UrlFormInput";
+import DateInputForm from "./DateInputForm";
 
 import { oxygen } from "@/fonts";
 type UploadFormProps = {
@@ -38,8 +39,17 @@ export default async function UploadForm({
   const youtubeBaseUrl = `https://youtu.be/`;
   let expiredDateString = "";
   const currentDateString = convertToDateTimeLocalString(new Date());
+  const utcPostfix = ":00.000Z";
   if (expiredDate) {
-    expiredDateString = convertToDateTimeLocalString(expiredDate);
+    expiredDateString = convertToDateTimeLocalString(
+      new Date(convertToDateTimeLocalString(expiredDate) + utcPostfix)
+    );
+
+    // expiredDateString = convertToDateTimeLocalString(expiredDate);
+    console.log(
+      "Expired Date: " +
+        convertToDateTimeLocalString(new Date(expiredDateString + utcPostfix))
+    );
   }
 
   return (
@@ -97,7 +107,9 @@ export default async function UploadForm({
           required
         />
       </div>
-      <div className="flex flex-col">
+
+      <DateInputForm expiredDate={expiredDate} />
+      {/* <div className="flex flex-col">
         <label className={`${oxygen.className} text-lg`} htmlFor="expiredDate">
           Expired Date
         </label>
@@ -110,7 +122,7 @@ export default async function UploadForm({
           min={currentDateString}
           required
         />
-      </div>
+      </div> */}
 
       <div className="flex flex-col">
         <label className={`${oxygen.className} text-lg`} htmlFor="targetUrl">

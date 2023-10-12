@@ -16,6 +16,9 @@ async function updateImageData(
   description: string,
   revealDirection: string
 ) {
+  console.log("DB date:" + new Date(expiredDate));
+  console.log("Db date str: " + expiredDate);
+
   const imageData = await prisma.image.update({
     where: { id: id },
     data: {

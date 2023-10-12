@@ -90,7 +90,9 @@ export default async function Page({ params }: { params: { id: string } }) {
   if (progress >= 1) {
     oriImgUrl = await getImgUrl(imgData.url);
   }
-  const dateNow = new Date();
+  // const dateNow = new Date(new Date().toISOString().replace("Z", ""));
+  // console.log("Date now: " + new Date(dateNow.toISOString().replace("Z", "")));
+
   const timeLeft = calculateTimeLeft(new Date(), imgData.expiredDate);
   if (
     timeLeft["days"] + timeLeft["hours"] + timeLeft["minutes"] <= 0 &&
