@@ -28,7 +28,11 @@ export default function Footer() {
             </svg>
             <span className="sr-only">Twitter page</span>
           </a>
-          <a target="_blank" href="https://github.com/agistarakha" className="">
+          <a
+            target="_blank"
+            href="https://github.com/agistarakha/revealationship"
+            className=""
+          >
             <svg
               className="w-4 h-4"
               aria-hidden="true"
