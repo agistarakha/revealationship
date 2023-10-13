@@ -285,8 +285,8 @@ function ImageRevealSectionComponent({
       <Image
         src={`${imgUrl}?r=${percentageProgress}&dir${revealDirection}`}
         alt="Covered Image"
-        width={300}
-        height={400}
+        width={500}
+        height={500}
         className="mx-auto shadow shadow-black lg:w-96 w-64"
         priority={true}
         placeholder="blur"
