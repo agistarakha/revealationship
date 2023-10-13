@@ -38,19 +38,6 @@ export default async function UploadForm({
 }: UploadFormProps) {
   const youtubeBaseUrl = `https://youtu.be/`;
   let expiredDateString = "";
-  const currentDateString = convertToDateTimeLocalString(new Date());
-  const utcPostfix = ":00.000Z";
-  if (expiredDate) {
-    expiredDateString = convertToDateTimeLocalString(
-      new Date(convertToDateTimeLocalString(expiredDate) + utcPostfix)
-    );
-
-    // expiredDateString = convertToDateTimeLocalString(expiredDate);
-    console.log(
-      "Expired Date: " +
-        convertToDateTimeLocalString(new Date(expiredDateString + utcPostfix))
-    );
-  }
 
   return (
     <form

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { oxygen } from "@/fonts";
 type DateInputFormProps = {
   expiredDate?: Date;
 };
@@ -18,17 +19,20 @@ const convertToDateTimeLocalString = (date: Date) => {
   return `${year}-${month}-${day}T${hours}:${minutes}`;
 };
 export default function DateInputForm({ expiredDate }: DateInputFormProps) {
-  const [datetime, setDatetime] = useState(
-    expiredDate ? convertToDateTimeLocalString(expiredDate) : ""
-  );
-  const [utcDatetime, setUtcDatetime] = useState(
-    expiredDate ? getUtcDate(convertToDateTimeLocalString(expiredDate)) : ""
-  );
+  const dateNowLocal = convertToDateTimeLocalString(new Date());
+  const localDatetimeInit = expiredDate
+    ? convertToDateTimeLocalString(expiredDate)
+    : dateNowLocal;
+  const utcDatetimeInit = expiredDate
+    ? getUtcDate(localDatetimeInit)
+    : getUtcDate(dateNowLocal);
+  const [datetime, setDatetime] = useState(localDatetimeInit);
+  const [utcDatetime, setUtcDatetime] = useState(utcDatetimeInit);
 
   return (
     <>
       <div className="flex flex-col">
-        <label className={` text-lg`} htmlFor="expiredDate">
+        <label className={`${oxygen.className} text-lg`} htmlFor="expiredDate">
           Expired Date
         </label>
         <input
@@ -38,25 +42,20 @@ export default function DateInputForm({ expiredDate }: DateInputFormProps) {
             setUtcDatetime(getUtcDate(e.target.value));
           }}
           value={datetime}
+          min={dateNowLocal}
           className="form-input"
           type="datetime-local"
           id="expiredDate"
         />
       </div>
-      <div className="flex flex-col">
-        <label className={` text-lg`} htmlFor="expiredDate">
-          Expired Date
-        </label>
-        <input
-          name="expiredDate"
-          className="form-input"
-          type="datetime-local"
-          id="expiredDate"
-          value={utcDatetime}
-          readOnly
-          required
-        />
-      </div>
+      <input
+        name="expiredDate"
+        type="hidden"
+        id="expiredDate"
+        value={utcDatetime}
+        readOnly
+        required
+      />
     </>
   );
 }
