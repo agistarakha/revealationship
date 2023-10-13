@@ -48,14 +48,14 @@ function HeaderSection() {
         </p>
         <div className="flex gap-2">
           <GoToElement
-            className={` text-xl sm:text-2xl btn rounded`}
+            className={` text-xl sm:text-2xl btn `}
             targetId="upload-form"
           >
             Reveal Image
           </GoToElement>
 
           <GoToElement
-            className={` text-xl sm:text-2xl btn rounded`}
+            className={` text-xl sm:text-2xl btn `}
             targetId="learn-section"
           >
             Learn More
